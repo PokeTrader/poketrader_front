@@ -10,9 +10,7 @@ export default {
     name: 'AddPokemonCard',
     props: ['pokemon'],
     data: function() {
-        return {
-            
-        }
+        return {}
     },
 };
 </script>

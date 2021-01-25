@@ -2,47 +2,19 @@
     <div class="trade-container">
         <p>Adicione Pokémons para a troca.</p>
         <div class="trade-groups">
-            <div class="trade-group">
-                <AddPokemonCard/>
-                <div class="poke-slots">
-                    <PokemonSlot :pokemon="{
-                        name: 'Ditto',
-                        spriteUrl: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png'
-                    }"/>
-                    <PokemonSlot/>
-                    <PokemonSlot/>
-                    <PokemonSlot/>
-                    <PokemonSlot/>
-                    <PokemonSlot/>
-                </div>
-            </div>
-            <div class="trade-group">
-                <AddPokemonCard/>
-                <div class="poke-slots">
-                    <PokemonSlot :pokemon="{
-                        name: 'Squirtle',
-                        spriteUrl: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png'
-                    }"/>
-                    <PokemonSlot/>
-                    <PokemonSlot/>
-                    <PokemonSlot/>
-                    <PokemonSlot/>
-                    <PokemonSlot/>
-                </div>
-            </div>
+            <TradeGroup/>
+            <TradeGroup/>
         </div>
     </div>
 </template>
 
 <script>
-import AddPokemonCard from '@/components/AddPokemonCard.vue';
-import PokemonSlot from '@/components/PokemonSlot.vue';
+import TradeGroup from '@/components/TradeGroup.vue';
 
 export default {
     name: 'TradeSimulation',
     components: {
-        AddPokemonCard,
-        PokemonSlot
+        TradeGroup,
     }
 };
 </script>
@@ -72,27 +44,6 @@ export default {
         justify-content: space-between;
     }
 
-    .trade-group {
-        border: 3px solid black;
-        min-width: 400px;
-        background: linear-gradient(
-        to bottom,
-        rgb(182, 183, 95, 0.8),
-        rgb(182, 183, 95, 0.8), 50%,
-        rgb(136, 152, 40, 0.8) 50%,
-        rgb(136, 152, 40, 0.8)
-        );
-        background-size: 100% 8px;
-    }
-
-    .trade-group:not(:last-of-type) {
-        margin-right: 2rem;
-    }
-
-    .poke-slots {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
+    
     
 </style>
