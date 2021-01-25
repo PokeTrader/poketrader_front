@@ -3,12 +3,14 @@
         <label for="poke-name">Adicionar Pokémon</label>
         <input v-model="name" type="text" name="poke-name">
         <button @click="addPokemon" class="button-add">Adicionar</button>
+        <p v-if="error" class="error-message">{{ error }}</p>
     </div>
 </template>
 
 <script>
 export default {
     name: 'AddPokemonCard',
+    props: ['error'],
 
     data: function() {
         return {
@@ -29,6 +31,7 @@ export default {
 
     .add-poke-card {
         display: flex;
+        flex-wrap: wrap;
         align-items: center;
         justify-content: space-around;
         background-color: #fff;
@@ -56,5 +59,9 @@ export default {
     .button-add:hover, .button-add:focus {
         background-color: #A070F0;
         border: 4px solid #F87030;
+    }
+
+    .error-message {
+        color: #e3242b;
     }
 </style>

@@ -1,6 +1,6 @@
 <template>
     <div class="trade-group">
-        <AddPokemonCard @add="$emit('add', $event)"/>
+        <AddPokemonCard @add="$emit('add', $event)" :error="error"/>
         <PokemonSlots :pokemons="pokemons" />
     </div>
 </template>
@@ -11,7 +11,7 @@ import PokemonSlots from '@/components/PokemonSlots.vue';
 
 export default {
     name: 'TradeGroup',
-    props: ['pokemons'],
+    props: ['pokemons', 'error'],
     components: {
         AddPokemonCard,
         PokemonSlots

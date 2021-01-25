@@ -2,8 +2,14 @@
     <div class="trade-container">
         <p>Adicione Pokémons para a troca.</p>
         <div class="trade-groups">
-            <TradeGroup :pokemons="myPokemons" @add="onAddPokemon(myPokemons, $event)"/>
-            <TradeGroup :pokemons="otherPokemons" @add="onAddPokemon(otherPokemons, $event)"/>
+            <TradeGroup
+                :pokemons="myPokemons.pokemons"
+                @add="onAddPokemon(myPokemons, $event)"
+                :error="myPokemons.error"/>
+            <TradeGroup
+                :pokemons="otherPokemons.pokemons"
+                @add="onAddPokemon(otherPokemons, $event)"
+                :error="otherPokemons.error"/>
         </div>
     </div>
 </template>
@@ -19,20 +25,32 @@ export default {
     },
     data: function() {
         return {
-            myPokemons: new Array(6).fill(null),
-            otherPokemons: new Array(6).fill(null)
+            myPokemons: {
+                pokemons: new Array(6).fill(null),
+                error: ''
+            },
+            otherPokemons: {
+                pokemons: new Array(6).fill(null),
+                error: ''
+            }
         }
     },
     methods: {
-        onAddPokemon (group, data) {
+        onAddPokemon: function (group, data) {
+            group.error = '';
+            const emptySpot = group.pokemons.findIndex((spot) => {
+                return spot === null;
+            });
+            if (emptySpot == 1) {
+                group.error = 'Não é possível adicionar mais Pokémons!'
+                return;
+            }
             axios.get(`${process.env.VUE_APP_POKETRADER_API_URL}/api/pokemons/${data}`)
             .then((response) => {
-                const emptySpot = group.findIndex((spot) => {
-                    return spot === null;
-                });
-                this.$set(group, emptySpot, response.data.pokemon);
+                this.$set(group.pokemons, emptySpot, response.data.pokemon);
             }).catch((error) => {
                 console.log(error.response);
+                group.error = 'Não foi possível adicionar esse Pokémon. Confira o nome e tente novamente.'
             })
         }
     },
