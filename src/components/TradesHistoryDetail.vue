@@ -6,10 +6,12 @@
         <div class="trade-groups">
             <TradeGroup
                 displayOnly=true
+                trainerInfo="Meus Pokémons"
                 :pokemons="trade.groups[0].pokemons"
                 :benefitted="trade.groups[0].wasBenefitted"/>
             <TradeGroup
                 displayOnly=true
+                trainerInfo="Pokémons do Outro Treinador"
                 :pokemons="trade.groups[1].pokemons"
                 :benefitted="trade.groups[1].wasBenefitted"/>
         </div>

@@ -22,11 +22,13 @@
         </div>
         <div class="trade-groups">
             <TradeGroup
+                trainerInfo="Meus Pokémons"
                 :pokemons="myPokemons.pokemons"
                 @add="onAddPokemon(myPokemons, $event)"
                 :error="myPokemons.error"
                 :benefitted="myPokemons.wasBenefitted"/>
             <TradeGroup
+                trainerInfo="Pokémons do Outro Treinador"
                 :pokemons="otherPokemons.pokemons"
                 @add="onAddPokemon(otherPokemons, $event)"
                 :error="otherPokemons.error"
