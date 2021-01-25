@@ -1,35 +1,40 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <div id="app">
+        <Login/>
     </div>
-    <router-view/>
-  </div>
 </template>
+
+<script>
+import Login from '@/views/Login.vue'
+
+export default {
+    name: 'App',
+    components: {
+    Login
+    }
+}
+</script>
 
 <style>
 #app {
-  box-sizing: border-box;
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  height: 98vh;
-  background-color: #98D8A0;
+    box-sizing: border-box;
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+    height: 98vh;
+    background-color: #98D8A0;
+    position: relative;
 }
 
 #nav {
-  padding: 30px;
+    padding: 30px;
 }
 
 #nav a {
-  font-weight: bold;
-  color: #2c3e50;
+    font-weight: bold;
+    color: #2c3e50;
 }
 
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
 </style>

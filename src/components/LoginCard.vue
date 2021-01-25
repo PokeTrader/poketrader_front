@@ -4,21 +4,37 @@
             <p>Bem vindo ao PokéTrader! Entre agora ou crie uma nova conta.</p>
             <div class="form-control">
                 <label for="username">Nome de usuário:</label>
-                <input type="text" name="username" id="username">
+                <input v-model="username" type="text" name="username" id="username">
             </div>
             <div class="form-control">
                 <label for="password">Senha:</label>
-                <input type="password" name="password" id="password">
+                <input v-model="password" type="password" name="password" id="password">
             </div>
         </div>
-        <button class="button">Entrar</button>
-        <button class="button">Cadastrar</button>
+        <button @click="signin" class="button">Entrar</button>
+        <button @click="register" class="button">Cadastrar</button>
     </div>
 </template>
 
 <script>
 export default {
+    name: 'LoginCard',
 
+    data: function() {
+        return {
+            username: '',
+            password: '',
+        }
+    },
+
+    methods: {
+        register: function() {
+            this.$emit('register', { username: this.username, password: this.password });
+        },
+        signin: function() {
+            this.$emit('signin', { username: this.username, password: this.password });
+        }
+    },
 };
 </script>
 
