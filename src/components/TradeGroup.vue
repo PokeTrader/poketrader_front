@@ -1,6 +1,9 @@
 <template>
     <div class="trade-group">
         <AddPokemonCard @add="$emit('add', $event)" :error="error"/>
+        <div v-if="benefitted" class="benefitted-warning">
+            <p>Este lado será beneficiado pela troca.</p>
+        </div>
         <PokemonSlots :pokemons="pokemons" />
     </div>
 </template>
@@ -11,7 +14,7 @@ import PokemonSlots from '@/components/PokemonSlots.vue';
 
 export default {
     name: 'TradeGroup',
-    props: ['pokemons', 'error'],
+    props: ['pokemons', 'error', 'benefitted'],
     components: {
         AddPokemonCard,
         PokemonSlots
@@ -39,5 +42,15 @@ export default {
 
     .trade-group:not(:last-of-type) {
         margin-right: 2rem;
+    }
+    
+    .benefitted-warning {
+        background-color: yellow;
+        width: 80%;
+        margin: auto;
+        padding: .4rem;
+        box-shadow:
+        0 0 0 2px #706880,
+        0 0 0 5px #3C3F53;
     }
 </style>

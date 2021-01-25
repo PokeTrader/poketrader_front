@@ -21,6 +21,7 @@ export default {
     methods: {
         addPokemon: function() {
             this.$emit('add', this.name);
+            this.name = '';
         }
     },
 };
