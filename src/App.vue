@@ -1,16 +1,35 @@
 <template>
     <div id="app">
-        <Login/>
+        <TradeSimulation v-if="authenticated"/>
+        <Login v-else @authenticated="onAuthStatusChanged"/>
     </div>
 </template>
 
 <script>
 import Login from '@/views/Login.vue'
+import TradeSimulation from '@/components/TradeSimulation.vue'
 
 export default {
     name: 'App',
     components: {
-    Login
+        Login,
+        TradeSimulation
+    },
+    data: function() {
+        return {
+            authenticated: false
+        }
+    },
+    methods: {
+        checkAuthStatus() {
+            this.authenticated = localStorage.getItem('user-token') !== null
+        },
+        onAuthStatusChanged(status) {
+            this.authenticated = status;
+        }
+    },
+    created: function() {
+        this.checkAuthStatus();
     }
 }
 </script>
