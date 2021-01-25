@@ -48,8 +48,16 @@ export default {
         font-family: 'JetBrains Mono', monospace;
     }
 
+
     .trade-groups {
         display: flex;
         justify-content: space-between;
+    }
+
+    @media (max-width: 1200px) {
+        .trade-groups {
+            flex-wrap: wrap;
+            justify-content: center;
+        }
     }
 </style>

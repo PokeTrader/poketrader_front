@@ -210,6 +210,13 @@ export default {
         justify-content: space-between;
     }
 
+    @media (max-width: 850px) {
+        .trade-groups {
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+    }
+
     .info-sign {
         padding: .3rem;
         border: 1px solid rgb(0, 0, 0, 0.4);

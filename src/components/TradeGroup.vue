@@ -43,6 +43,13 @@ export default {
     .trade-group:not(:last-of-type) {
         margin-right: 2rem;
     }
+
+    @media (max-width: 850px) {
+        .trade-group:not(:last-of-type) {
+            margin-right: 0;
+            margin-bottom: 2rem;
+        }
+    }
     
     .benefitted-warning {
         background-color: yellow;
