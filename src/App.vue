@@ -22,7 +22,7 @@
 <script>
 import Login from '@/views/Login.vue'
 import TradeSimulation from '@/views/TradeSimulation.vue'
-import TradesHistory from '@/components/TradesHistory.vue'
+import TradesHistory from '@/views/TradesHistory.vue'
 
 export default {
     name: 'App',

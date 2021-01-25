@@ -1,5 +1,6 @@
 <template>
     <div class="trade-container">
+        <LoadingModal v-if="loading"/>
         <div class="trade-info">
             <p v-if="!tradeEvaluated">Adicione Pokémons para avaliar a troca.</p>
             <p v-if="tradeEvaluated && fairTrade" class="info-sign info-sign--success">
@@ -40,14 +41,17 @@
 <script>
 import axios from 'axios';
 import TradeGroup from '@/components/TradeGroup.vue';
+import LoadingModal from '@/components/LoadingModal.vue';
 
 export default {
     name: 'TradeSimulation',
     components: {
         TradeGroup,
+        LoadingModal
     },
     data: function() {
         return {
+            loading: false,
             tradeEvaluated: false,
             fairTrade: null,
             tradeSaved: false,
@@ -66,12 +70,14 @@ export default {
     },
     methods: {
         onAddPokemon: function (group, data) {
+            this.loading = true;
             group.error = '';
             const emptySpot = group.pokemons.findIndex((spot) => {
                 return spot === null;
             });
             if (emptySpot == -1) {
                 group.error = 'Não é possível adicionar mais Pokémons!'
+                this.loading = false
                 return;
             }
             axios.get(`${process.env.VUE_APP_POKETRADER_API_URL}/api/pokemons/${data}`)
@@ -80,7 +86,7 @@ export default {
             }).catch((error) => {
                 console.log(error.response);
                 group.error = 'Não foi possível adicionar esse Pokémon. Confira o nome e tente novamente.'
-            })
+            }).finally(() => this.loading = false);
         },
         getExpSum(group) {
             console.log(group);
@@ -90,6 +96,13 @@ export default {
                 .reduce((acc, cur) => acc + cur);
         },
         evaluateTrade() {
+            if (this.isGroupEmpty(this.myPokemons.pokemons) ||
+                this.isGroupEmpty(this.otherPokemons.pokemons)) {
+                return;
+            }
+
+            this.loading = true;
+
             axios.get(`${process.env.VUE_APP_POKETRADER_API_URL}/api/trades/fairness`, {
                 params: {
                     'groupOneExp': this.getExpSum(this.myPokemons.pokemons),
@@ -115,9 +128,10 @@ export default {
                 }
             }).catch((error) => {
                 console.log(error.response);
-            })
+            }).finally(() => this.loading = false);
         },
         saveTrade() {
+            this.loading = true;
             const postData = {
                 isFair: this.fairTrade,
                 tradeGroups: [
@@ -139,9 +153,13 @@ export default {
             }).catch((error) => {
                 console.log(error.response);
                 this.saveError = true;
-            })
+            }).finally(() => this.loading = false);
+        },
+        isGroupEmpty(group) {
+            return group[0] === null;
         },
         reset() {
+            this.loading = false;
             this.myPokemons = {
                 pokemons: new Array(6).fill(null),
                 error: '',
