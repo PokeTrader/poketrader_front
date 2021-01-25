@@ -46,6 +46,7 @@ export default {
         width: 100%;
         flex: 0 40%;
         width: 200px;
+        min-width: 210px;
         box-sizing: border-box;
     }
 

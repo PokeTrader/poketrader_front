@@ -3,10 +3,10 @@
         <div class="list-item">
             <p>Troca #{{trade.id}}</p>
             <p>{{trade.groups[0]}}:{{trade.groups[1]}} Pokémons</p>
-            <span class="badge" :class="trade.isFair ? 'badge-fair' : 'trade-unfair'">
+            <span class="badge" :class="trade.isFair ? 'badge-fair' : 'badge-unfair'">
                 {{trade.isFair ? "Justa" : "Injusta"}}
             </span>
-            <a href="#">Ver detalhes</a>
+            <a href="#" @click="seeDetails">Ver detalhes</a>
         </div>
     </li>
 </template>
@@ -14,7 +14,12 @@
 <script>
 export default {
     name: 'TradesHistoryListItem',
-    props: ['trade']
+    props: ['trade'],
+    methods: {
+        seeDetails: function() {
+            this.$emit('details', this.trade.id);
+        }
+    }
 };
 </script>
 

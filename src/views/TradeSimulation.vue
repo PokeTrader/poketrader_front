@@ -129,6 +129,7 @@ export default {
                     }
                 ]
             };
+            console.log(postData)
             axios.post(`${process.env.VUE_APP_POKETRADER_API_URL}/api/trades`, postData)
             .then(() => {
                 this.reset();

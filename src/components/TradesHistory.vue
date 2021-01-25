@@ -1,25 +1,31 @@
 <template>
-    <div class="trade-container">
-        <ul>
+    <div v-if="!detailMode" class="trade-container">
+        <ul >
             <TradesHistoryListItem
                 v-for="trade in trades"
                 :key="trade.id"
-                :trade="trade"/>
+                :trade="trade"
+                @details="onSeeDetail"/>
         </ul>
     </div>
+    <TradesHistoryDetail v-else :trade="detailTrade" @goBack="backToList"/>
 </template>
 
 <script>
 import axios from 'axios';
 import TradesHistoryListItem from '@/components/TradesHistoryListItem.vue'
+import TradesHistoryDetail from '@/components/TradesHistoryDetail.vue'
 
 export default {
     components: {
-        TradesHistoryListItem
+        TradesHistoryListItem,
+        TradesHistoryDetail
     },
     data: function() {
         return {
-            trades: []
+            trades: [],
+            detailMode: false,
+            detailTrade: null,
         }
     },
     created: function() {
@@ -28,6 +34,20 @@ export default {
         .then((response) => {
             this.trades = response.data.trades;
         })
+    },
+
+    methods: {
+        onSeeDetail: function(id) {
+            axios.get(`${process.env.VUE_APP_POKETRADER_API_URL}/api/trades/${id}`)
+            .then((response) => {
+                console.log(response);
+                this.detailTrade = response.data.trade;
+                this.detailMode = true;
+            })
+        },
+        backToList: function() {
+            this.detailMode = false;
+        }
     }
 };
 </script>
