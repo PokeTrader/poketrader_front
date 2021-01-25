@@ -5,32 +5,29 @@
             <div class="trade-group">
                 <AddPokemonCard/>
                 <div class="poke-slots">
-                    <div class="poke-slot">
-                        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png" alt="" srcset="">
-                        <p>Ditto</p>
-                    </div>
-                    <div class="poke-slot">
-                        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png" alt="" srcset="">
-                        <p>Ditto</p>
-                    </div>
-                    <div class="poke-slot poke-slot--empty"></div>
-                    <div class="poke-slot poke-slot--empty"></div>
-                    <div class="poke-slot poke-slot--empty"></div>
-                    <div class="poke-slot poke-slot--empty"></div>
+                    <PokemonSlot :pokemon="{
+                        name: 'Ditto',
+                        spriteUrl: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png'
+                    }"/>
+                    <PokemonSlot/>
+                    <PokemonSlot/>
+                    <PokemonSlot/>
+                    <PokemonSlot/>
+                    <PokemonSlot/>
                 </div>
             </div>
             <div class="trade-group">
                 <AddPokemonCard/>
                 <div class="poke-slots">
-                    <div class="poke-slot">
-                        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png" alt="" srcset="">
-                        <p>Squirtle</p>
-                    </div>
-                    <div class="poke-slot poke-slot--empty"></div>
-                    <div class="poke-slot poke-slot--empty"></div>
-                    <div class="poke-slot poke-slot--empty"></div>
-                    <div class="poke-slot poke-slot--empty"></div>
-                    <div class="poke-slot poke-slot--empty"></div>
+                    <PokemonSlot :pokemon="{
+                        name: 'Squirtle',
+                        spriteUrl: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png'
+                    }"/>
+                    <PokemonSlot/>
+                    <PokemonSlot/>
+                    <PokemonSlot/>
+                    <PokemonSlot/>
+                    <PokemonSlot/>
                 </div>
             </div>
         </div>
@@ -39,16 +36,19 @@
 
 <script>
 import AddPokemonCard from '@/components/AddPokemonCard.vue';
+import PokemonSlot from '@/components/PokemonSlot.vue';
 
 export default {
     name: 'TradeSimulation',
     components: {
-        AddPokemonCard
+        AddPokemonCard,
+        PokemonSlot
     }
 };
 </script>
 
-<style scoped>
+
+        PokemonSlot<style scoped>
     @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap');
 
     .trade-container {
@@ -94,35 +94,5 @@ export default {
         flex-wrap: wrap;
         justify-content: center;
     }
-
-    .poke-slot {
-        border: 3px solid black;
-        background-color: #3890D8;
-        background: linear-gradient(
-            to bottom,
-            #3890D8,
-            #3890D8 75%,
-            #80C0D8 75%,
-            #80C0D8
-        );
-        height: 75px;
-                border-radius: 5px;
-
-        margin: 1rem .5rem;
-        display: flex;
-        align-items: center;
-        color: white;
-        font-weight: bold;
-        width: 100%;
-        flex: 0 40%;
-        width: 200px;
-        box-sizing: border-box;
-    }
-
-    .poke-slot--empty {
-        border: 3px solid black;
-        background: transparent;
-        height: 75px;
-        box-shadow: 2px 2px 1px #000;
-    }
+    
 </style>
