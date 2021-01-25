@@ -8,7 +8,7 @@
                 <li class="nav-item" @click="seeHistory">
                     <a href="#">Histórico</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" @click="logout">
                     <a href="#">Logout</a>
                 </li>
             </ul>
@@ -52,6 +52,10 @@ export default {
         seeHistory() {
             this.historyView = true;
             this.simulationView = false;
+        },
+        logout() {
+            localStorage.removeItem('user-token');
+            this.authenticated = false;
         }
     },
     created: function() {
