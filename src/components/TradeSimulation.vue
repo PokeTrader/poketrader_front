@@ -3,11 +3,7 @@
         <p>Adicione Pokémons para a troca.</p>
         <div class="trade-groups">
             <div class="trade-group">
-                <div class="poke-search">
-                    <label for="search">Adicionar Pokémon</label>
-                    <input type="text">
-                    <button class="button-add">Adicionar</button>
-                </div>
+                <AddPokemonCard/>
                 <div class="poke-slots">
                     <div class="poke-slot">
                         <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png" alt="" srcset="">
@@ -24,11 +20,7 @@
                 </div>
             </div>
             <div class="trade-group">
-                <div class="poke-search">
-                        <label for="search">Adicionar Pokémon</label>
-                        <input type="text">
-                        <button class="button-add">Adicionar</button>
-                </div>
+                <AddPokemonCard/>
                 <div class="poke-slots">
                     <div class="poke-slot">
                         <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png" alt="" srcset="">
@@ -46,8 +38,13 @@
 </template>
 
 <script>
-export default {
+import AddPokemonCard from '@/components/AddPokemonCard.vue';
 
+export default {
+    name: 'TradeSimulation',
+    components: {
+        AddPokemonCard
+    }
 };
 </script>
 
@@ -98,19 +95,6 @@ export default {
         justify-content: center;
     }
 
-    .poke-search {
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-        background-color: #fff;
-        padding: 1rem;
-        width: 80%;
-        margin: 1rem auto 1rem auto;
-        box-shadow:
-        0 0 0 2px #706880,
-        0 0 0 5px #3C3F53;
-    }
-
     .poke-slot {
         border: 3px solid black;
         background-color: #3890D8;
@@ -133,24 +117,6 @@ export default {
         flex: 0 40%;
         width: 200px;
         box-sizing: border-box;
-    }
-
-    .button-add {
-        background-color: #7058B0;
-        border: 4px solid #484860;
-        color: white;
-        font-size: 1rem;
-        padding: .3rem .5rem;
-        border-radius: 25px;
-        min-width: 125px;
-        cursor: pointer;
-
-        font-family: 'JetBrains Mono', monospace;
-    }
-
-    .button-add:hover, .button-add:focus {
-        background-color: #A070F0;
-        border: 4px solid #F87030;
     }
 
     .poke-slot--empty {
