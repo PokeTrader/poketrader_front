@@ -1,6 +1,6 @@
 <template>
     <div class="trade-group">
-        <AddPokemonCard/>
+        <AddPokemonCard @add="$emit('add', $event)"/>
         <PokemonSlots :pokemons="pokemons" />
     </div>
 </template>

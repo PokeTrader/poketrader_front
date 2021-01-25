@@ -1,7 +1,7 @@
 <template>
     <div class="poke-slot" :class="{ 'poke-slot--empty': !pokemon }">
-        <img v-if="pokemon" :src="pokemon.spriteUrl" :alt="pokemon.name">
-        <p v-if="pokemon">{{ pokemon.name }}</p>
+        <img v-if="pokemon" :src="pokemon.sprite" :alt="pokemon.name">
+        <p v-if="pokemon">{{ pokemon.name | capitalize }}</p>
     </div>
 </template>
 
@@ -12,6 +12,13 @@ export default {
     data: function() {
         return {}
     },
+    filters: {
+    capitalize: function (value) {
+            if (!value) return ''
+            value = value.toString()
+            return value.charAt(0).toUpperCase() + value.slice(1)
+        }
+    }
 };
 </script>
 

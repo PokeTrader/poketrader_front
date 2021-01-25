@@ -2,13 +2,14 @@
     <div class="trade-container">
         <p>Adicione Pokémons para a troca.</p>
         <div class="trade-groups">
-            <TradeGroup :pokemons="myPokemons"/>
-            <TradeGroup :pokemons="otherPokemons"/>
+            <TradeGroup :pokemons="myPokemons" @add="onAddPokemon(myPokemons, $event)"/>
+            <TradeGroup :pokemons="otherPokemons" @add="onAddPokemon(otherPokemons, $event)"/>
         </div>
     </div>
 </template>
 
 <script>
+import axios from 'axios';
 import TradeGroup from '@/components/TradeGroup.vue';
 
 export default {
@@ -18,21 +19,25 @@ export default {
     },
     data: function() {
         return {
-            myPokemons: [
-                {
-                    name: 'Ditto',
-                    spriteUrl: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png'
-                },
-                null, null, null, null, null
-            ],
-            otherPokemons: [
-                {
-                    name: 'Gengar',
-                    spriteUrl: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/94.png'
-                },
-                null, null, null, null, null
-            ]
+            myPokemons: new Array(6).fill(null),
+            otherPokemons: new Array(6).fill(null)
         }
+    },
+    methods: {
+        onAddPokemon (group, data) {
+            axios.get(`${process.env.VUE_APP_POKETRADER_API_URL}/api/pokemons/${data}`)
+            .then((response) => {
+                const emptySpot = group.findIndex((spot) => {
+                    return spot === null;
+                });
+                this.$set(group, emptySpot, response.data.pokemon);
+            }).catch((error) => {
+                console.log(error.response);
+            })
+        }
+    },
+    created: function() {
+        axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('user-token')}`;
     }
 };
 </script>
@@ -61,7 +66,4 @@ export default {
         display: flex;
         justify-content: space-between;
     }
-
-    
-    
 </style>
