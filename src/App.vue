@@ -1,19 +1,21 @@
 <template>
     <div id="app">
-        <TradeSimulation v-if="authenticated"/>
+        <TradesHistory v-if="authenticated"/>
         <Login v-else @authenticated="onAuthStatusChanged"/>
     </div>
 </template>
 
 <script>
 import Login from '@/views/Login.vue'
-import TradeSimulation from '@/views/TradeSimulation.vue'
+// import TradeSimulation from '@/views/TradeSimulation.vue'
+import TradesHistory from '@/components/TradesHistory.vue'
 
 export default {
     name: 'App',
     components: {
         Login,
-        TradeSimulation
+        TradesHistory
+        // TradeSimulation
     },
     data: function() {
         return {

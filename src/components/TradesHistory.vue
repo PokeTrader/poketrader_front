@@ -1,37 +1,34 @@
 <template>
     <div class="trade-container">
         <ul>
-            <li>
-                <div class="list-item">
-                    <p>Troca #01</p>
-                    <p>5:1 Pokémons</p>
-                    <span class="badge badge-fair">Justa</span>
-                    <a href="#">Ver detalhes</a>
-                </div>
-            </li>
-            <li>
-                <div class="list-item">
-                    <p>Troca #01</p>
-                    <p>5:1 Pokémons</p>
-                    <span class="badge badge-unfair">Injusta</span>
-                    <a href="#">Ver detalhes</a>
-                </div>
-            </li>
-            <li>
-                <div class="list-item">
-                    <p>Troca #01</p>
-                    <p>5:1 Pokémons</p>
-                    <span class="badge badge-fair">Justa</span>
-                    <a href="#">Ver detalhes</a>
-                </div>
-            </li>
+            <TradesHistoryListItem
+                v-for="trade in trades"
+                :key="trade.id"
+                :trade="trade"/>
         </ul>
     </div>
 </template>
 
 <script>
-export default {
+import axios from 'axios';
+import TradesHistoryListItem from '@/components/TradesHistoryListItem.vue'
 
+export default {
+    components: {
+        TradesHistoryListItem
+    },
+    data: function() {
+        return {
+            trades: []
+        }
+    },
+    created: function() {
+        axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('user-token')}`;
+        axios.get(`${process.env.VUE_APP_POKETRADER_API_URL}/api/trades`)
+        .then((response) => {
+            this.trades = response.data.trades;
+        })
+    }
 };
 </script>
 
@@ -63,26 +60,5 @@ export default {
 
     li {
         border: 1px solid rgb(0,0,0,0.4);
-    }
-
-    .list-item {
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-    }
-
-    .badge {
-        padding:.5rem;
-        color: white;
-        border-radius: 10px;
-        width: 80px;
-    }
-
-    .badge-fair {
-        background-color: green;
-    }
-
-    .badge-unfair {
-        background-color: red;
     }
 </style>
