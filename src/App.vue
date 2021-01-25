@@ -7,7 +7,7 @@
 
 <script>
 import Login from '@/views/Login.vue'
-import TradeSimulation from '@/components/TradeSimulation.vue'
+import TradeSimulation from '@/views/TradeSimulation.vue'
 
 export default {
     name: 'App',

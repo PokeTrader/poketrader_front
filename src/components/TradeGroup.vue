@@ -11,14 +11,13 @@ import PokemonSlots from '@/components/PokemonSlots.vue';
 
 export default {
     name: 'TradeGroup',
+    props: ['pokemons'],
     components: {
         AddPokemonCard,
         PokemonSlots
     },
     data: function() {
-        return {
-            pokemons: new Array(6)
-        }
+        return {}
     },
 };
 </script>

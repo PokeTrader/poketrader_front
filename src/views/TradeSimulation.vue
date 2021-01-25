@@ -2,8 +2,8 @@
     <div class="trade-container">
         <p>Adicione Pokémons para a troca.</p>
         <div class="trade-groups">
-            <TradeGroup/>
-            <TradeGroup/>
+            <TradeGroup :pokemons="myPokemons"/>
+            <TradeGroup :pokemons="otherPokemons"/>
         </div>
     </div>
 </template>
@@ -15,12 +15,30 @@ export default {
     name: 'TradeSimulation',
     components: {
         TradeGroup,
+    },
+    data: function() {
+        return {
+            myPokemons: [
+                {
+                    name: 'Ditto',
+                    spriteUrl: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png'
+                },
+                null, null, null, null, null
+            ],
+            otherPokemons: [
+                {
+                    name: 'Gengar',
+                    spriteUrl: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/94.png'
+                },
+                null, null, null, null, null
+            ]
+        }
     }
 };
 </script>
 
 
-        PokemonSlot<style scoped>
+<style scoped>
     @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap');
 
     .trade-container {
