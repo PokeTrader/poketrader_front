@@ -1,5 +1,7 @@
 <template>
     <div v-if="!detailMode" class="trade-container">
+        <p v-if="trades.length === 0">Você não possui trocas salvas.</p>
+
         <ul >
             <TradesHistoryListItem
                 v-for="trade in trades"

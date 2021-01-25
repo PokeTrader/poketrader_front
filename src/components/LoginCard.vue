@@ -10,6 +10,7 @@
                 <label for="password">Senha:</label>
                 <input v-model="password" type="password" name="password" id="password">
             </div>
+            <p class="auth-error">{{ error }}</p>
         </div>
         <button @click="signin" class="button">Entrar</button>
         <button @click="register" class="button">Cadastrar</button>
@@ -19,7 +20,7 @@
 <script>
 export default {
     name: 'LoginCard',
-
+    props: ['error'],
     data: function() {
         return {
             username: '',
@@ -103,5 +104,9 @@ export default {
     .button:hover, .button:focus {
         background-color: #A070F0;
         border: 4px solid #F87030;
+    }
+
+    .auth-error {
+        color: #e3242b;
     }
 </style>
