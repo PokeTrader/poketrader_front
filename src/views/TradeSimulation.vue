@@ -110,25 +110,36 @@ export default {
                 }
             }).then((response) => {
                 this.tradeEvaluated = true;
-                this.myPokemons.wasBenefitted = false;
-                this.otherPokemons.wasBenefitted = false;
-                this.tradeSaved = false;
-                this.saveError = false;
-
-                const data = response.data;
-                if (!data.fair) {
-                    this.fairTrade = false;
-                    if (data.benefittedTrainer === "group_one") {
-                        this.myPokemons.wasBenefitted = true;
-                    } else {
-                        this.otherPokemons.wasBenefitted = true;
-                    }
-                } else {
-                    this.fairTrade = true;
-                }
+                this.clearStatusMessages();
+                this.setTradeStatus(response.data);
             }).catch((error) => {
                 console.log(error.response);
             }).finally(() => this.loading = false);
+        },
+        setTradeStatus(evaluation) {
+            if (!evaluation.fair) {
+                this.fairTrade = false;
+                if (evaluation.benefittedTrainer === "group_one") {
+                    this.myPokemons.wasBenefitted = true;
+                } else {
+                    this.otherPokemons.wasBenefitted = true;
+                }
+            } else {
+                this.fairTrade = true;
+            }
+        },
+        clearStatusMessages() {
+            this.myPokemons.wasBenefitted = false;
+            this.otherPokemons.wasBenefitted = false;
+            this.tradeSaved = false;
+            this.saveError = false;
+        },
+        clearTradeGroup() {
+            return {
+                pokemons: new Array(6).fill(null),
+                error: '',
+                wasBenefitted: false,
+            };
         },
         saveTrade() {
             this.loading = true;
@@ -145,7 +156,6 @@ export default {
                     }
                 ]
             };
-            console.log(postData)
             axios.post(`${process.env.VUE_APP_POKETRADER_API_URL}/api/trades`, postData)
             .then(() => {
                 this.reset();
@@ -160,20 +170,11 @@ export default {
         },
         reset() {
             this.loading = false;
-            this.myPokemons = {
-                pokemons: new Array(6).fill(null),
-                error: '',
-                wasBenefitted: false,
-            };
-            this.otherPokemons = {
-                pokemons: new Array(6).fill(null),
-                error: '',
-                wasBenefitted: false,
-            }
-            this.tradeEvaluated = false;
+            this.clearStatusMessages();
+            this.myPokemons = this.clearTradeGroup();
+            this.otherPokemons = this.clearTradeGroup();
             this.fairTrade = null;
-            this.tradeSaved = false;
-            this.saveError = false;
+            this.tradeEvaluated = false;
         }
     },
     created: function() {
