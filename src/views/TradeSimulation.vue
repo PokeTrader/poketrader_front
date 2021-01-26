@@ -80,6 +80,7 @@ export default {
                 this.loading = false
                 return;
             }
+
             axios.get(`${process.env.VUE_APP_POKETRADER_API_URL}/api/pokemons/${data}`)
             .then((response) => {
                 this.$set(group.pokemons, emptySpot, response.data.pokemon);

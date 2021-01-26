@@ -15,7 +15,7 @@ import LoginCard from '@/components/LoginCard.vue';
 import LoadingModal from '@/components/LoadingModal.vue';
 
 export default {
-    name: 'Home',
+    name: 'Login',
     components: {
         LoginCard,
         LoadingModal
