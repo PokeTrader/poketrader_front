@@ -4,7 +4,7 @@ Frontend para o simulador de trocas de Pokémons. O sistema avalia possíveis tr
 
 ## Acessando o projeto
 
-A aplicação está disponível em [https://felipe-poketrader.herokuapp.com/]() e pode ser acessada tanto pelo computador quanto pelo celular.
+A aplicação está disponível em [https://felipe-poketrader.herokuapp.com](https://felipe-poketrader.herokuapp.com) e pode ser acessada tanto pelo computador quanto pelo celular.
 
 ## Instalação
 
