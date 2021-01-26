@@ -1,6 +1,6 @@
 <template>
     <div class="trade-group">
-        <span class="trainer-info">{{ trainerInfo }}</span>
+        <span class="trainer-info">{{ trainerInfo }} ({{ showExpSum }} exp.)</span>
         <AddPokemonCard v-if="!displayOnly" @add="$emit('add', $event)" :error="error"/>
         <div v-if="benefitted" class="benefitted-warning">
             <p>Este treinador será beneficiado pela troca.</p>
@@ -10,6 +10,7 @@
 </template>
 
 <script>
+import { getExpSum } from '@/utils/utils.js';
 import AddPokemonCard from '@/components/AddPokemonCard.vue';
 import PokemonSlots from '@/components/PokemonSlots.vue';
 
@@ -23,6 +24,11 @@ export default {
     data: function() {
         return {}
     },
+    computed: {
+        showExpSum: function() {
+            return getExpSum(this.pokemons)
+        }
+    }
 };
 </script>
 

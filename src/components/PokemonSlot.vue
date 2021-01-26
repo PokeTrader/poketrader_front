@@ -1,7 +1,9 @@
 <template>
     <div class="poke-slot" :class="{ 'poke-slot--empty': !pokemon }">
         <img v-if="pokemon" :src="pokemon.sprite" :alt="pokemon.name">
-        <p v-if="pokemon">{{ pokemon.name | capitalize }}</p>
+        <div class="poke-info">
+            <p v-if="pokemon">{{ pokemon.name | capitalize }} ({{pokemon.baseExp}} exp.)</p>
+        </div>
     </div>
 </template>
 
@@ -48,6 +50,11 @@ export default {
         width: 200px;
         min-width: 210px;
         box-sizing: border-box;
+    }
+
+    .poke-info {
+        display: flex;
+        justify-content: space-between;
     }
 
     .poke-slot--empty {

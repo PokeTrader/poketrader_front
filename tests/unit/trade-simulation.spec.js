@@ -19,7 +19,7 @@ describe('TradeSimulation.vue', () => {
                 pokemon: {
                     name: 'gengar',
                     sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/94.png',
-                    base_exp: 225,
+                    baseExp: 225,
                 }
             }
         }));
@@ -45,7 +45,7 @@ describe('TradeSimulation.vue', () => {
                 pokemon: {
                     name: 'gengar',
                     sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/94.png',
-                    base_exp: 225,
+                    baseExp: 225,
                 }
             }
         }));

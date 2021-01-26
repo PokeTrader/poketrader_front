@@ -40,6 +40,7 @@
 
 <script>
 import axios from 'axios';
+import { getExpSum } from '@/utils/utils.js';
 import TradeGroup from '@/components/TradeGroup.vue';
 import LoadingModal from '@/components/LoadingModal.vue';
 
@@ -89,13 +90,6 @@ export default {
                 group.error = 'Não foi possível adicionar esse Pokémon. Confira o nome e tente novamente.'
             }).finally(() => this.loading = false);
         },
-        getExpSum(group) {
-            console.log(group);
-            return group
-                .filter((pokemon) => pokemon != null)
-                .map((pokemon) => pokemon.base_exp)
-                .reduce((acc, cur) => acc + cur);
-        },
         evaluateTrade() {
             if (this.isGroupEmpty(this.myPokemons.pokemons) ||
                 this.isGroupEmpty(this.otherPokemons.pokemons)) {
@@ -106,8 +100,8 @@ export default {
 
             axios.get(`${process.env.VUE_APP_POKETRADER_API_URL}/api/trades/fairness`, {
                 params: {
-                    'groupOneExp': this.getExpSum(this.myPokemons.pokemons),
-                    'groupTwoExp': this.getExpSum(this.otherPokemons.pokemons),
+                    'groupOneExp': getExpSum(this.myPokemons.pokemons),
+                    'groupTwoExp': getExpSum(this.otherPokemons.pokemons),
                 }
             }).then((response) => {
                 this.tradeEvaluated = true;
