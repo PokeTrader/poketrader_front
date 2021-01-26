@@ -3,7 +3,7 @@
         <span class="trainer-info">{{ trainerInfo }}</span>
         <AddPokemonCard v-if="!displayOnly" @add="$emit('add', $event)" :error="error"/>
         <div v-if="benefitted" class="benefitted-warning">
-            <p>Este lado será beneficiado pela troca.</p>
+            <p>Este treinador será beneficiado pela troca.</p>
         </div>
         <PokemonSlots :pokemons="pokemons" />
     </div>

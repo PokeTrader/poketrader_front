@@ -12,8 +12,8 @@
             </div>
             <p class="auth-error">{{ error }}</p>
         </div>
-        <button @click="signin" class="button">Entrar</button>
-        <button @click="register" class="button">Cadastrar</button>
+        <button id="signin-button" @click="signin" class="button">Entrar</button>
+        <button id="register-button" @click="register" class="button">Cadastrar</button>
     </div>
 </template>
 

@@ -20,9 +20,10 @@ describe('AddPokemonCard.vue', () => {
         await wrapper.find('button').trigger('click');
 
         expect(wrapper.emitted()).toHaveProperty('add');
+        expect(wrapper.emitted().add[0]).toEqual(['pikachu']);
     });
 
-    it('display error message correctly', async () => {
+    it('displays error message correctly', async () => {
         const wrapper = mount(AddPokemonCard, {
             propsData: { error: 'some error' }
         });
