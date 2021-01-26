@@ -1,29 +1,11 @@
-# poketrader_front
+# PokeTrader (Frontend)
 
-## Project setup
-```
-npm install
-```
+Frontend para o simulador de trocas de Pokémons. O sistema avalia possíveis trocas entre treinadores, informando se a mesma é justa ou não, a partir do valor de `base experience` de cada Pokémon existente na troca. Os dados de uma troca podem ser armazenados no sistema, permitindo visualização posterior.
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## Instalação
 
-### Compiles and minifies for production
-```
-npm run build
-```
+É necessário ter o Node.js instalado.
 
-### Run your unit tests
-```
-npm run test:unit
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+- Para instalar as dependências do projeto, executar `npm install`.
+- Para rodar o projeto, executar `npm run serve`.
+- Para rodar os testes do projeto, executar `npm run test:unit`.
