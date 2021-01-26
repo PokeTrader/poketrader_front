@@ -85,6 +85,7 @@ export default {
     display: flex;
     justify-content: center;
     list-style-type: none;
+    padding: 0;
 }
 
 .nav-item {

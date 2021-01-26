@@ -46,6 +46,10 @@ export default {
     }
 
     @media (max-width: 850px) {
+        .trade-group {
+            min-width: 300px;
+        }
+
         .trade-group:not(:last-of-type) {
             margin-right: 0;
             margin-bottom: 2rem;

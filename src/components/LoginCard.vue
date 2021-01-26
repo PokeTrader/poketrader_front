@@ -66,6 +66,8 @@ export default {
         font-family: 'JetBrains Mono', monospace;
     }
 
+    
+
     .login-card--fields {
         background-color: #fff;
         padding: 1rem;
@@ -108,5 +110,20 @@ export default {
 
     .auth-error {
         color: #e3242b;
+    }
+
+    @media (max-width: 850px) {
+        .login-card {
+            width: auto;
+        }
+
+        .form-control {
+            flex-wrap: wrap;
+        }
+
+        .button {
+            min-width: 200px;
+            padding: .5rem;
+        }
     }
 </style>

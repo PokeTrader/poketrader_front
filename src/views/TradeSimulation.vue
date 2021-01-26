@@ -203,9 +203,11 @@ export default {
 
         font-family: 'JetBrains Mono', monospace;
     }
+    
 
     .trade-controls {
         display: flex;
+        flex-wrap: wrap;
         justify-content: center;
         padding-bottom: 1rem;
     }
@@ -236,6 +238,12 @@ export default {
         .trade-groups {
             flex-wrap: wrap;
             justify-content: center;
+        }
+        .trade-container {
+            width: auto;
+        }
+        .trade-control {
+            margin-right: 0;
         }
     }
 

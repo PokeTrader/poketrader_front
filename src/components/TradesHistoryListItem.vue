@@ -34,6 +34,13 @@ export default {
         display: flex;
         align-items: center;
         justify-content: space-around;
+        flex-wrap: wrap;
+    }
+
+    @media (max-width: 850px) {
+        .list-item {
+            margin: 1rem;
+        }
     }
 
     .badge {
